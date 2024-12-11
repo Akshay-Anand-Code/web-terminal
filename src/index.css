@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'VT323';
+  src: url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 1px 0 #ff0000, -1px 0 #00ff00;
+    transform: translate(0);
+  }
+  20% {
+    text-shadow: 1px 0 #00ff00, -1px 0 #0000ff;
+    transform: translate(1px, 1px);
+  }
+  40% {
+    text-shadow: 1px 0 #0000ff, -1px 0 #ff0000;
+    transform: translate(-1px, -1px);
+  }
+  60% {
+    text-shadow: 1px 0 #ff0000, -1px 0 #00ff00;
+    transform: translate(1px, -1px);
+  }
+  80% {
+    text-shadow: 1px 0 #00ff00, -1px 0 #0000ff;
+    transform: translate(-1px, 1px);
+  }
+  100% {
+    text-shadow: 1px 0 #0000ff, -1px 0 #ff0000;
+    transform: translate(0);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes flicker {
+  0% { opacity: 0.8; }
+  5% { opacity: 0.85; }
+  10% { opacity: 0.9; }
+  15% { opacity: 0.85; }
+  20% { opacity: 0.95; }
+  25% { opacity: 0.85; }
+  30% { opacity: 0.9; }
+  35% { opacity: 0.95; }
+  40% { opacity: 0.85; }
+  45% { opacity: 0.9; }
+  50% { opacity: 0.95; }
+  55% { opacity: 0.85; }
+  60% { opacity: 0.9; }
+  65% { opacity: 0.85; }
+  70% { opacity: 0.95; }
+  75% { opacity: 0.9; }
+  80% { opacity: 0.85; }
+  85% { opacity: 0.9; }
+  90% { opacity: 0.95; }
+  95% { opacity: 0.85; }
+  100% { opacity: 0.9; }
+}
+
+.terminal-effect {
+  position: relative;
+  overflow: hidden;
+  animation: flicker 0.3s infinite;
+}
+
+.terminal-effect::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 100, 0, 0.1);
+  animation: scanline 6s linear infinite;
+}
+
+.glitch-text {
+  animation: glitch 5s infinite;
+}
+
+.crt-overlay::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+
