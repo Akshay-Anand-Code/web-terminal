@@ -14,6 +14,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('/public/download.gif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  overflow: hidden;
 }
 
 code {
@@ -23,27 +29,27 @@ code {
 
 @keyframes glitch {
   0% {
-    text-shadow: 1px 0 #ff0000, -1px 0 #00ff00;
+    text-shadow: 3px 0 #ff0000, -3px 0 #00ff00;
     transform: translate(0);
   }
   20% {
-    text-shadow: 1px 0 #00ff00, -1px 0 #0000ff;
-    transform: translate(1px, 1px);
+    text-shadow: 3px 0 #00ff00, -3px 0 #0000ff;
+    transform: translate(3px, 3px);
   }
   40% {
-    text-shadow: 1px 0 #0000ff, -1px 0 #ff0000;
-    transform: translate(-1px, -1px);
+    text-shadow: 3px 0 #0000ff, -3px 0 #ff0000;
+    transform: translate(-3px, -3px);
   }
   60% {
-    text-shadow: 1px 0 #ff0000, -1px 0 #00ff00;
-    transform: translate(1px, -1px);
+    text-shadow: 3px 0 #ff0000, -3px 0 #00ff00;
+    transform: translate(3px, -3px);
   }
   80% {
-    text-shadow: 1px 0 #00ff00, -1px 0 #0000ff;
-    transform: translate(-1px, 1px);
+    text-shadow: 3px 0 #00ff00, -3px 0 #0000ff;
+    transform: translate(-3px, 3px);
   }
   100% {
-    text-shadow: 1px 0 #0000ff, -1px 0 #ff0000;
+    text-shadow: 3px 0 #0000ff, -3px 0 #ff0000;
     transform: translate(0);
   }
 }
@@ -97,7 +103,9 @@ code {
 }
 
 .glitch-text {
-  animation: glitch 5s infinite;
+  font-size: 2rem;
+  color: white;
+  animation: glitch 3s infinite;
 }
 
 .crt-overlay::before {
@@ -115,5 +123,15 @@ code {
     transparent 2px
   );
   pointer-events: none;
+}
+
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Ensure the video is behind other content */
 }
 

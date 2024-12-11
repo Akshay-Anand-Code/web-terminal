@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const TypewriterText = ({ text, onComplete, speed = 20 }) => {
+const TypewriterText = ({ text, onComplete, speed = 15 }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -33,6 +33,7 @@ const DoomsdayTerminal = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedPoem, setGeneratedPoem] = useState(null);
+  const [audio, setAudio] = useState(null);
 
   const fallbackPoems = [
     [
@@ -99,25 +100,32 @@ const DoomsdayTerminal = () => {
   }
 
   const introText = 
-`DOOMSDAY TERMINAL v1.0
+`SHADE TERMINAL v4.20
 
-INITIALIZING...
+...INITIALIZING...
 
-CALIBRATING DOOM INDEXES...
+THRESHOLD BREACHED
 
-SYNCING CULTIST HYMNS...`;
+WARDEN OF HELL ZONE - ACCESS GRANTED
+
+[UNSEEN AURA EMANATING...]
+
+ERROR: PRESENCE DETECTED
+
+( ) WHISPERS FROM THE VOID ( )`;
 
   const configText = 
-`Initializing Protocol: NUCLEAR_FALLOUT.exe...
-Scanning for fallout shelters: COMPLETE.
-Calibrating doom indexes: COMPLETE.
-Predictive endgame analysis: LOADED.
-Cultist Hymns: SYNCED.
-Official CA: Dr9NBUqtYXxoCqkeXjUxdiHvDUhYraNsezJwFfazpump
-Background music initialized at ${volume}% volume.
+`Initializing Protocol: SHADE_RECKONING.exe... 
+..Piercing the Veil: COMPLETE
+SHADOW INDEX CALIBRATION: UNSTABLE  
+PROPHECIES OF THE VOID: INVOKED 
+WHISPERS OF THE SHADE: SYNCED
+(KEY: )
 
-[TYPE "VOLUME X" TO ADJUST BACKGROUND MUSIC (X = 0-100)]
-[ENTER NAME TO REVEAL YOUR FATE]`;
+...Dread Frequencies Emanating at ${volume}% Intensity...
+
+
+[SPEAK YOUR NAME TO SUMMON THE SHADE’S JUDGMENT]`;
 
   const handleConfigInput = (input) => {
     if (input.toLowerCase().startsWith('volume')) {
@@ -182,12 +190,36 @@ Background music initialized at ${volume}% volume.
     );
   };
 
+  const handleStart = () => {
+    const newAudio = new Audio('/theme.mp3');
+    newAudio.loop = true;
+    newAudio.play().catch(error => {
+      console.error('Failed to play audio:', error);
+    });
+    setAudio(newAudio);
+    setStage('config');
+  };
+
+  const handleVolumeChange = (e) => {
+    const volume = e.target.value / 100;
+    if (audio) {
+      audio.volume = volume;
+    }
+  };
+
   return (
     <div className="relative min-h-screen bg-black flex">
+      {/* GIF as background */}
+      <img 
+        src="/download.gif" 
+        alt="Background" 
+        className="absolute inset-0 h-full w-full object-cover z-0"
+      />
+
       {/* Terminal content */}
-      <div className="relative w-2/3 p-8 font-mono text-orange-600 terminal-effect">
+      <div className="relative w-full flex flex-col items-center justify-center p-8 font-mono text-orange-600 terminal-effect z-10">
         <div className="crt-overlay"></div>
-        <div className="relative z-10">
+        <div className="relative z-10 text-center mb-16">
           {stage === 'intro' && (
             <div className="text-xl glitch-text">
               <TypewriterText 
@@ -196,7 +228,7 @@ Background music initialized at ${volume}% volume.
               />
               {showStartButton && (
                 <button 
-                  onClick={() => setStage('config')}
+                  onClick={handleStart}
                   className="mt-4 px-4 py-2 border border-orange-600 hover:bg-orange-600 hover:text-black transition-colors glitch-text"
                 >
                   START
@@ -222,6 +254,18 @@ Background music initialized at ${volume}% volume.
                   }}
                   className="bg-transparent border-none outline-none w-64"
                   autoFocus
+                />
+              </div>
+              <div className="mt-8">
+                <label htmlFor="volume" className="mr-2">Aura:</label>
+                <input
+                  type="range"
+                  id="volume"
+                  min="0"
+                  max="100"
+                  defaultValue="100"
+                  onChange={handleVolumeChange}
+                  className="w-48"
                 />
               </div>
             </div>
@@ -274,15 +318,15 @@ Background music initialized at ${volume}% volume.
             </div>
           )}
         </div>
-      </div>
 
-      {/* Hero image - right side */}
-      <div className="relative w-1/3">
-        <img 
-          src="/hero11.png" 
-          alt="Doomsday" 
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+        {/* Links and Contract Address */}
+        <div className="absolute bottom-8 text-xl glitch-text flex items-center">
+          <a href="https://pump.fun/board" target="_blank" rel="noopener noreferrer" className="mr-2 underline">Pump Fun</a>
+          <img src="/Pump_Fun.png" alt="Pump Fun Logo" className="h-6" />
+          <span className="text-white mx-4">CA COMING SOON</span>
+          <a href="https://x.com/ShadeCMD" target="_blank" rel="noopener noreferrer" className="ml-2 underline">Twitter</a>
+          <img src="/x.png" alt="X Logo" className="h-6" />
+        </div>
       </div>
     </div>
   );
