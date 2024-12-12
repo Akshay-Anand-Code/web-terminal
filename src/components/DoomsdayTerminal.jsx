@@ -323,9 +323,9 @@ WHISPERS OF THE SHADE: SYNCED
         <div className="absolute bottom-8 text-xl glitch-text flex items-center">
           <a href="https://t.me/TheBurningGate" target="_blank" rel="noopener noreferrer" className="mr-2 underline">Telegram</a>
           <img src="/Telegram.png" alt="Telegram Logo" className="h-6" />
-          <a href="https://pump.fun/board" target="_blank" rel="noopener noreferrer" className="mx-2 underline">Pump Fun</a>
+          <a href="https://pump.fun/coin/JAxiR5Ez3KmQxdJB9thryEyAQiDq13zZKH1L1mYRpump" target="_blank" rel="noopener noreferrer" className="mx-2 underline">Pump Fun</a>
           <img src="/Pump_Fun.png" alt="Pump Fun Logo" className="h-6" />
-          <span className="text-white mx-4">CA COMING SOON</span>
+          <span className="text-white mx-4">CA: JAxiR5Ez3KmQxdJB9thryEyAQiDq13zZKH1L1mYRpump</span>
           <a href="https://x.com/ShadeCMD" target="_blank" rel="noopener noreferrer" className="ml-2 underline">Twitter</a>
           <img src="/x.png" alt="X Logo" className="h-6" />
           <a href="/The Burning Gate_ Realm of Shade.pdf" target="_blank" rel="noopener noreferrer" className="ml-4 underline">Whitepaper</a>
